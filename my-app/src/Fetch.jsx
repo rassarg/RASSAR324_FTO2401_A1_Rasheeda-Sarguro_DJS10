@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 
 export default function Fetch() {
+  // Sets the state of the data and errors
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
 
+  // Fetches the data from the API and either updates the state of data or error
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/posts")
       .then((response) => {
@@ -22,6 +24,7 @@ export default function Fetch() {
       });
   }, []);
 
+  // JSX to render results of API call
   return (
     <div>
       {error ? (
