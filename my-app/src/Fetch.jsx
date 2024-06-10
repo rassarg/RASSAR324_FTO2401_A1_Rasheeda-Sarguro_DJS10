@@ -7,12 +7,29 @@ export default function Fetch() {
     fetch("https://jsonplaceholder.typicode.com/posts")
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Network response was not ok");
+          throw new Error("Something went wrong");
         }
         return response.json();
       })
-      .then((data) => console.log(data))
-      .then((data) => setPosts(data))
-      .catch((error) => console.error(error.message));
+      .then((data) => {
+        console.log(data);
+        setPosts(data);
+      })
+      .catch((error) => console.error(error.message)); // Log the error to the console
   }, []);
+
+  return (
+    <div>
+      <h2>Posts</h2>
+      <ul style={{ listStyleType: "none" }}>
+        {posts.map((post) => (
+          <li key={post.id}>
+            <span>{post.id}. </span>
+            <strong>{post.title}</strong>
+            <p>{post.body}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
