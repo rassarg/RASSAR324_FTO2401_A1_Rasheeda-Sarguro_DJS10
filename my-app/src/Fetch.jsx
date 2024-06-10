@@ -26,7 +26,9 @@ export default function Fetch() {
           <li key={post.id}>
             <span>{post.id}. </span>
             <strong>{post.title}</strong>
-            <p>{post.body}</p>
+            <small>
+              <p>{post.body}</p>
+            </small>
           </li>
         ))}
       </ul>
