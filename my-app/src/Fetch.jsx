@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
+import PostList from "./PostList";
 
 export default function Fetch() {
-  // Sets the state of the data and errors
+  // Sets the state of the post data and errors
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
 
@@ -24,36 +25,6 @@ export default function Fetch() {
       });
   }, []);
 
-  // JSX to render results of API call
-  return (
-    <div>
-      {error ? (
-        <strong>
-          <div
-            style={{
-              fontSize: "larger",
-              marginTop: "10em",
-            }}
-          >
-            Data fetching failed
-          </div>
-        </strong>
-      ) : (
-        <div>
-          <h2>Posts</h2>
-          <ul style={{ listStyleType: "none" }}>
-            {posts.map((post) => (
-              <li key={post.id}>
-                <span>{post.id}. </span>
-                <strong>{post.title}</strong>
-                <small>
-                  <p>{post.body}</p>
-                </small>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </div>
-  );
+  // Render the PostList component and pass the data and error as props
+  return <PostList posts={posts} error={error} />;
 }
